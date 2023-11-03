@@ -67,10 +67,26 @@ void List_add_first(List* L, int val) {
         L->begin->prev = p;
     }
 
-    //List_is_empty(L) ? (L->end = p) : (L->begin->prev = p); 
+    // List_is_empty(L) ? (L->end = p) : (L->begin->prev = p); 
     L->begin = p;
     L->size++;
 
+}
+
+void List_add_last(List* L, int val) {
+    Node* p = Node_crete(val);
+    p->prev = L->end;
+
+    if (List_is_empty(L)) {
+        L->begin = p;
+    }
+    else {
+        L->end->next = p;
+    }
+
+    // List_is_empty(L) ? (L->begin = p) : (L->end->prev = p);
+    L->end = p;
+    L->size++;
 }
 
 void List_print(const List* L) {
@@ -113,4 +129,11 @@ void List_inverted_print(const List* L) {
         printf("L->begin = %d\n", L->begin->val);
     }
     puts("");
+}
+
+void List_remove(List* L, int val) {
+    if (!List_is_empty(L)) {
+
+    }
+
 }
