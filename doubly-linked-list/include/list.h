@@ -2,6 +2,7 @@
 #define LIST_H
 
 #include <stdbool.h>
+#include <stddef.h>
 
 typedef struct _doubly_node DoubliNode, Node;
 typedef struct _doubly_linked_list DoublyLinkedList, List;
@@ -17,5 +18,10 @@ void List_print(const List* L);
 void List_inverted_print(const List* L);
 void List_remove(List* L, int val);
 void remove_from_head(List* L, int val);
+
+size_t List_size(const List* L);
+int List_first_val(const List* L);
+int List_last_val(const List* L);
+int List_get_val(const List* L, int index);
 
 #endif

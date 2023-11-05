@@ -132,50 +132,100 @@ void List_inverted_print(const List* L) {
 }
 
 void List_remove(List* L, int val) {
-    if (!List_is_empty(L)) {
-        Node* p = L->begin;
+    if (List_is_empty(L)) {
+        return;
+    }
 
-        // caso 1: o elemento está na cabeça da lista
-        if (L->begin->val == val) {
-            L->begin = p->next;
+    Node* p = L->begin;
 
-            // a lista possui apenas um único elemento
-            if (L->end == p) {
-                L->end = NULL;
-            }
-            // a lista possui mais de um elemento
-            else {
-                L->begin->prev = NULL;
-            }
+    // caso 1: o elemento está na cabeça da lista
+    if (L->begin->val == val) {
+        L->begin = p->next;
 
-            free(p);
-            L->size--;
+        // a lista possui apenas um único elemento
+        if (L->end == p) {
+            L->end = NULL;
         }
+        // a lista possui mais de um elemento
         else {
-            p = p->next;
+            L->begin->prev = NULL;
+        }
 
-            while (p != NULL) {
-                if (p->val == val) {
-                    p->prev->next = p->next;
+        free(p);
+        L->size--;
+    }
+    else {
+        p = p->next;
 
-                    // caso 3: o elemento está no final da lista
-                    if (L->end == p) {
-                        L->end = p->prev;
-                    }
-                    // caso 2: o elemento está no meio da lista
-                    else {
-                        p->next->prev = p->prev;
-                    }
+        while (p != NULL) {
+            if (p->val == val) {
+                p->prev->next = p->next;
 
-                    free(p);
-                    p = NULL;
-                    L->size--;
+                // caso 3: o elemento está no final da lista
+                if (L->end == p) {
+                    L->end = p->prev;
                 }
+                // caso 2: o elemento está no meio da lista
                 else {
-                    p = p->next;
+                    p->next->prev = p->prev;
                 }
+
+                free(p);
+                p = NULL;
+                L->size--;
+            }
+            else {
+                p = p->next;
             }
         }
     }
 }
 
+size_t List_size(const List* L) {
+    if (List_is_empty(L)) {
+        fprintf(stderr, "ERROR in 'List_size'\n");
+        fprintf(stderr, "List is empty\n");
+        exit(EXIT_FAILURE);
+    }
+    return L->size;
+}
+
+int List_first_val(const List* L) {
+    if (List_is_empty(L)) {
+        fprintf(stderr, "ERROR in 'List_first_val'\n");
+        fprintf(stderr, "List is empty\n");
+        exit(EXIT_FAILURE);
+    }
+    return L->begin->val;
+}
+
+int List_last_val(const List* L) {
+    if (List_is_empty(L)) {
+        fprintf(stderr, "ERROR in 'List_last_val'\n");
+        fprintf(stderr, "List is empty\n");
+        exit(EXIT_FAILURE);
+    }
+    return L->end->val;
+}
+
+int List_get_val(const List* L, int index) {
+    if (List_is_empty(L)) {
+        fprintf(stderr, "ERROR in 'List_get_val'\n");
+        fprintf(stderr, "List is empty\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if (index < 0 || index >= L->size) {
+        fprintf(stderr, "ERROR in 'List_get_val'\n");
+        fprintf(stderr, "invalid index: %d\n", index);
+        fprintf(stderr, "Try an index within [0, %lu]\n", L->size - 1);
+        exit(EXIT_FAILURE);
+    }
+
+    Node* p = L->begin;
+    for (int i = 0; i != index; i++) {
+        p = p->next;
+    }
+
+    return p->val;
+}

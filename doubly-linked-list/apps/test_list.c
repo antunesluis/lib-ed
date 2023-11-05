@@ -52,6 +52,23 @@ int main() {
     List_print(L);
     List_inverted_print(L);
 
+    printf("--------------------------------");
+
+    puts("\nadd_last 10, 7, 2, 4, 7");
+    List_add_last(L, 10);
+    List_add_last(L, 7);
+    List_add_last(L, 2);
+    List_add_last(L, 4);
+    List_add_last(L, 7);
+    List_print(L);
+
+    printf("\nFirst: %d\n", List_first_val(L));
+    printf("Last: %d\n", List_last_val(L));
+    printf("Get[0]: %d\n", List_get_val(L, 0));
+    printf("Get[1]: %d\n", List_get_val(L, 1));
+    printf("Get[2]: %d\n", List_get_val(L, 2));
+    printf("Get[3]: %d\n", List_get_val(L, 3));
+
     List_destroy(&L);
 
     return 0;
