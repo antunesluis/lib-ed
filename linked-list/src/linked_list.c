@@ -132,30 +132,26 @@ size_t LinkedList_size(const LinkedList* L) {
     return L->size;
 }
 
-int LinkedList_first_val(const LinkedList* L) {
+void check_empty_linked_list(const LinkedList* L, const char* function_name) {
     if (LinkedList_is_empty(L)) {
-        fprintf(stderr, "ERROR in 'LinkedList_first_val'\n");
+        fprintf(stderr, "ERROR in '%s'\n", function_name);
         fprintf(stderr, "List is empty\n");
         exit(EXIT_FAILURE);
     }
+}
+
+int LinkedList_first_val(const LinkedList* L) {
+    check_empty_linked_list(L, "LinkedList_first_val");
     return L->begin->val;
 }
 
 int LinkedList_last_val(const LinkedList* L) {
-    if (LinkedList_is_empty(L)) {
-        fprintf(stderr, "ERROR in 'LinkedList_last_val'\n");
-        fprintf(stderr, "List is empty\n");
-        exit(EXIT_FAILURE);
-    }
+    check_empty_linked_list(L, "LinkedList_last_val");
     return L->end->val;
 }
 
 int LinkedList_get_val(const LinkedList* L, int index) {
-    if (LinkedList_is_empty(L)) {
-        fprintf(stderr, "ERROR in 'LinkedList_get_val'\n");
-        fprintf(stderr, "List is empty\n");
-        exit(EXIT_FAILURE);
-    }
+    check_empty_linked_list(L, "LinkedList_get_val");
 
     if (index < 0 || index >= L->size) {
         fprintf(stderr, "ERROR in 'LinkedList_get_val'\n");
