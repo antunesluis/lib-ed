@@ -133,15 +133,17 @@ void List_inverted_print(const List* L) {
 
 void List_remove(List* L, int val) {
     if (!List_is_empty(L)) {
-        // elemento na cabeça da lista
+        Node* p = L->begin;
+
+        // caso 1: o elemento está na cabeça da lista
         if (L->begin->val == val) {
-            Node* p = L->begin;
             L->begin = p->next;
 
-            // a lista possui apenas um elemento
-            if (L->begin == L->end) {
+            // a lista possui apenas um único elemento
+            if (L->end == p) {
                 L->end = NULL;
             }
+            // a lista possui mais de um elemento
             else {
                 L->begin->prev = NULL;
             }
@@ -150,29 +152,30 @@ void List_remove(List* L, int val) {
             L->size--;
         }
         else {
-            Node* p = L->begin->next;
+            p = p->next;
 
             while (p != NULL) {
                 if (p->val == val) {
+                    p->prev->next = p->next;
 
-                    // elemento no final da lista
+                    // caso 3: o elemento está no final da lista
                     if (L->end == p) {
-
+                        L->end = p->prev;
                     }
-
-                    // elemento no meio da lista
+                    // caso 2: o elemento está no meio da lista
                     else {
-                        p->prev->next = p->next;
-                        p->next->next = p->prev;
-                        free(p);
+                        p->next->prev = p->prev;
                     }
+
+                    free(p);
+                    p = NULL;
+                    L->size--;
                 }
                 else {
                     p = p->next;
                 }
             }
-
         }
     }
-
 }
+

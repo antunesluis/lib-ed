@@ -16,5 +16,6 @@ void List_add_last(List* L, int val);
 void List_print(const List* L);
 void List_inverted_print(const List* L);
 void List_remove(List* L, int val);
+void remove_from_head(List* L, int val);
 
 #endif
