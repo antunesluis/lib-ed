@@ -181,39 +181,31 @@ void List_remove(List* L, int val) {
     }
 }
 
-size_t List_size(const List* L) {
+void check_empty_list(const List* L, const char* function_name) {
     if (List_is_empty(L)) {
-        fprintf(stderr, "ERROR in 'List_size'\n");
+        fprintf(stderr, "ERROR in '%s'\n", function_name);
         fprintf(stderr, "List is empty\n");
         exit(EXIT_FAILURE);
     }
+}
+
+size_t List_size(const List* L) {
+    check_empty_list(L, "List_size");
     return L->size;
 }
 
 int List_first_val(const List* L) {
-    if (List_is_empty(L)) {
-        fprintf(stderr, "ERROR in 'List_first_val'\n");
-        fprintf(stderr, "List is empty\n");
-        exit(EXIT_FAILURE);
-    }
+    check_empty_list(L, "List_first_val");
     return L->begin->val;
 }
 
 int List_last_val(const List* L) {
-    if (List_is_empty(L)) {
-        fprintf(stderr, "ERROR in 'List_last_val'\n");
-        fprintf(stderr, "List is empty\n");
-        exit(EXIT_FAILURE);
-    }
+    check_empty_list(L, "List_last_val");
     return L->end->val;
 }
 
 int List_get_val(const List* L, int index) {
-    if (List_is_empty(L)) {
-        fprintf(stderr, "ERROR in 'List_get_val'\n");
-        fprintf(stderr, "List is empty\n");
-        exit(EXIT_FAILURE);
-    }
+    check_empty_list(L, "List_get_val");
 
     if (index < 0 || index >= L->size) {
         fprintf(stderr, "ERROR in 'List_get_val'\n");
