@@ -10,7 +10,7 @@ LIBS = -lm -led -L $(LIB)
 
 all: libed myapps
 
-libed: $(OBJ)/float_vector.o
+libed: $(OBJ)/circ_list.o
 	ar -rcs $(LIB)/libed.a $(OBJ)/*.o 
 
 myapps: clean_apps \
