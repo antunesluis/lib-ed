@@ -13,5 +13,6 @@ void CircNode_destroy(CircNode** cnode_ref);
 CircList* List_create();
 void CircList_destroy(CircList** L_ref);
 bool CircList_is_empty(const CircList* L);
+void CircList_add_first(CircList* L, int val);
 
 #endif
