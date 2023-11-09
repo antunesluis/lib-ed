@@ -91,4 +91,5 @@ void CircList_add_first(CircList* L, int val) {
     }
 
     L->size++;
+    L->size++;
 }
