@@ -23,7 +23,7 @@ $(BIN)/%: $(APPS)/%.c
 	gcc $(FLAGS) $< $(LIBS) -I $(INCLUDE) -o $@
 
 run:
-	$(BIN)/app
+	$(BIN)/array_stack_test
 
 clean:
 	rm -rf $(BIN)/* $(LIB)/* $(OBJ)/*
