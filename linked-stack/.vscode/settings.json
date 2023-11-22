@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "linked_stack.h": "c",
+        "stdbool.h": "c",
+        "stddef.h": "c"
+    }
+}
