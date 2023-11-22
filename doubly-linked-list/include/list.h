@@ -12,16 +12,19 @@ Node* Node_crete(int val);
 List* List_create();
 void List_destroy(List** L_ref);
 bool List_is_empty(const List* L);
+size_t List_size(const List* L);
+
 void List_add_first(List* L, int val);
 void List_add_last(List* L, int val);
+
 void List_print(const List* L);
 void List_inverted_print(const List* L);
-void List_remove(List* L, int val);
-void remove_from_head(List* L, int val);
 
-size_t List_size(const List* L);
-int List_first_val(const List* L);
-int List_last_val(const List* L);
+void List_remove(List* L, int val);
+void List_remove_last(List* L);
+
+int List_get_first_val(const List* L);
+int List_get_last_val(const List* L);
 int List_get_val(const List* L, int index);
 
 #endif

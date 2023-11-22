@@ -181,6 +181,24 @@ void List_remove(List* L, int val) {
     }
 }
 
+void List_remove_last(List* L) {
+    if (List_is_empty(L)) {
+        Node* p = L->end;
+
+        if (L->begin == L->end) {
+            L->begin = NULL;
+            L->end = NULL;
+        }
+        else {
+            L->end = L->end->prev;
+            L->end->next = NULL;
+        }
+
+        free(p);
+        L->size--;
+    }
+}
+
 void check_empty_list(const List* L, const char* function_name) {
     if (List_is_empty(L)) {
         fprintf(stderr, "ERROR in '%s'\n", function_name);
@@ -194,12 +212,12 @@ size_t List_size(const List* L) {
     return L->size;
 }
 
-int List_first_val(const List* L) {
+int List_get_first_val(const List* L) {
     check_empty_list(L, "List_first_val");
     return L->begin->val;
 }
 
-int List_last_val(const List* L) {
+int List_get_last_val(const List* L) {
     check_empty_list(L, "List_last_val");
     return L->end->val;
 }

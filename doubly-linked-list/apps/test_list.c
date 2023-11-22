@@ -62,8 +62,8 @@ int main() {
     List_add_last(L, 7);
     List_print(L);
 
-    printf("\nFirst: %d\n", List_first_val(L));
-    printf("Last: %d\n", List_last_val(L));
+    printf("\nFirst: %d\n", List_get_first_val(L));
+    printf("Last: %d\n", List_get_last_val(L));
     printf("Get[0]: %d\n", List_get_val(L, 0));
     printf("Get[1]: %d\n", List_get_val(L, 1));
     printf("Get[2]: %d\n", List_get_val(L, 2));
