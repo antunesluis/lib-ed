@@ -1,4 +1,4 @@
-#include "linked_stack.h"
+#include "stack.h"
 #include "list.h"
 
 #include <stdlib.h>

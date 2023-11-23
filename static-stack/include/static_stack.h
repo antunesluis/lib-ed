@@ -1,5 +1,5 @@
-#ifndef ARRAY_STACK_H
-#define ARRAY_STACK_H
+#ifndef STATIC_STACK_H
+#define STATIC_STACK_H
 
 #include <stdbool.h>
 #include <stddef.h>

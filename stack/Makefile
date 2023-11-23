@@ -10,11 +10,12 @@ LIBS = -lm -led -L $(LIB)
 
 all: libed myapps
 
-libed: $(OBJ)/array_stack.o
+libed: $(OBJ)/stack.o \
+	$(OBJ)/list.o
 	ar -rcs $(LIB)/libed.a $(OBJ)/*.o 
 
 myapps: clean_apps \
-	$(BIN)/array_stack_test
+	$(BIN)/stack_test
 
 $(OBJ)/%.o: $(SRC)/%.c $(INCLUDE)/%.h
 	gcc $(FLAGS) -c $< -I $(INCLUDE) -o $@
@@ -23,7 +24,7 @@ $(BIN)/%: $(APPS)/%.c
 	gcc $(FLAGS) $< $(LIBS) -I $(INCLUDE) -o $@
 
 run:
-	$(BIN)/array_stack_test
+	$(BIN)/stack_test
 
 clean:
 	rm -rf $(BIN)/* $(LIB)/* $(OBJ)/*
