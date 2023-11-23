@@ -11,7 +11,7 @@ Repositório dedicado às implementações das principais estruturas de dados em
 - [Filas Circulares Estáticas](https://github.com/antunesluis/lib-ed/tree/main/static-circular-queue)
 - [Filas Dinâmicas](https://github.com/antunesluis/lib-ed/tree/main/queue)
 
-## Materiáis: 
+## Bibliografia: 
 CELES, Waldemar; CERQUEIRA, Renato; RANGEL, Jose. Introdução a Estruturas de Dados. Rio de Janeiro : Campus, 2004
 
 [Curso: Dominando Estruturas de Dados 1](https://www.youtube.com/playlist?list=PL3ZslI15yo2r-gHJtjORRMRKMSNRpf7u5)
