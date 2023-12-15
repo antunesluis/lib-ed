@@ -2,77 +2,91 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct _node {
-    int val;
-    struct _node* right;
-    struct _node* left;
-} Node;
+typedef struct TreeNode {
+    int value;
+    struct TreeNode* right;
+    struct TreeNode* left;
+} TreeNode;
 
-void tree_print_v2(Node* root) {
+void print_in_order(TreeNode* root) {
     if (root) {
-        tree_print_v2(root->left);
-        printf("%d ", root->val);
-        tree_print_v2(root->right);
+        print_in_order(root->left);
+        printf("%d ", root->value);
+        print_in_order(root->right);
     }
 }
 
-void tree_print_v1(Node* root) {
+void print_pre_order(TreeNode* root) {
     if (root) {
-        printf("%d ", root->val);
-        tree_print_v1(root->left);
-        tree_print_v1(root->right);
+        printf("%d ", root->value);
+        print_pre_order(root->left);
+        print_pre_order(root->right);
     }
 }
 
-Node* tree_add_v1(Node* root, int val) {
+TreeNode* insert_tree_node(TreeNode* root, int value) {
     if (root == NULL) {
-        Node* aux = (Node*)calloc(1, sizeof(Node));
+        TreeNode* new_node = (TreeNode*)calloc(1, sizeof(TreeNode));
+        if (new_node == NULL) {
+            fprintf(stderr, "Erro na alocação de memória\n");
+            exit(EXIT_FAILURE);
+        }
 
-        aux->val = val;
-        aux->left = NULL;
-        aux->right = NULL;
+        new_node->value = value;
+        new_node->left = NULL;
+        new_node->right = NULL;
 
-        return aux;
+        return new_node;
     }
     else {
-        if (val < root->val) {
-            root->left = tree_add_v1(root->left, val);
+        if (value < root->value) {
+            root->left = insert_tree_node(root->left, value);
         }
         else {
-            root->right = tree_add_v1(root->right, val);
+            root->right = insert_tree_node(root->right, value);
         }
 
         return root;
     }
 }
 
-void tree_add_no_return(Node** root, int val) {
-    if (root == NULL) {
-        *root = (Node*)calloc(1, sizeof(Node));
+void insert_tree_node_no_return(TreeNode** root, int value) {
+    if (*root == NULL) {
+        *root = (TreeNode*)calloc(1, sizeof(TreeNode));
+        if (*root == NULL) {
+            fprintf(stderr, "Erro na alocação de memória\n");
+            exit(EXIT_FAILURE);
+        }
 
-        (*root)->val = val;
+        (*root)->value = value;
         (*root)->left = NULL;
         (*root)->right = NULL;
     }
     else {
-        if (val < (*root)->val) {
-            tree_add_no_return(&((*root)->left), val);
+        if (value < (*root)->value) {
+            insert_tree_node_no_return(&((*root)->left), value);
         }
         else {
-            tree_add_no_return(&((*root)->right), val);
+            insert_tree_node_no_return(&((*root)->right), value);
         }
     }
 }
 
-void tree_add_no_return_and_recursion(Node** root_ref, int val) {
-    Node* root = *root_ref;
+void insert_tree_node_no_return_and_iteration(TreeNode** root_ref, int value) {
+    TreeNode* root = *root_ref;
 
     while (root) {
-
+        if (value < root->value) {
+            root_ref = &root->left;
+        }
+        else {
+            root_ref = &root->right;
+        }
+        root = *root_ref;
     }
 
-    root = (Node*)calloc(1, sizeof(Node));
-    root->val = val;
+    root = (TreeNode*)calloc(1, sizeof(TreeNode));
+    root->value = value;
     root->right = NULL;
     root->left = NULL;
 

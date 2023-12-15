@@ -4,12 +4,12 @@
 int main() {
     Node* root = NULL;
 
-    root = tree_add_v1(root, 50);
-    root = tree_add_v1(root, 100);
-    root = tree_add_v1(root, 200);
-    root = tree_add_v1(root, 125);
-    root = tree_add_v1(root, 25);
-    root = tree_add_v1(root, 95);
+    tree_add_no_return_and_recursion(&root, 50);
+    tree_add_no_return_and_recursion(&root, 100);
+    tree_add_no_return_and_recursion(&root, 200);
+    tree_add_no_return_and_recursion(&root, 125);
+    tree_add_no_return_and_recursion(&root, 25);
+    tree_add_no_return_and_recursion(&root, 95);
 
     tree_print_v2(root);
 
